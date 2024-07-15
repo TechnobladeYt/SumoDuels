@@ -6,7 +6,6 @@ namespace jack\sumo\commands;
 
 use pocketmine\command\Command;
 use pocketmine\command\CommandSender;
-use pocketmine\command\PluginIdentifiableCommand;
 use pocketmine\Player;
 use pocketmine\plugin\Plugin;
 use pocketmine\plugin\PluginBase;
@@ -17,7 +16,7 @@ use jack\sumo\Sumo;
  * Class OneVsOneCommand
  * @package onevsone\commands
  */
-class SumoCommand extends Command implements PluginIdentifiableCommand {
+class SumoCommand extends Command {
 
     /** @var OneVsOne $plugin */
     protected $plugin;
@@ -164,15 +163,7 @@ class SumoCommand extends Command implements PluginIdentifiableCommand {
                 }
                 $sender->sendMessage("§cUsage: §7/sumo help");
                 break;
+            }
         }
-
     }
-
-    /**
-     * @return OneVsOne|Plugin $plugin
-     */
-    public function getPlugin(): Plugin {
-        return $this->plugin;
-    }
-
 }
