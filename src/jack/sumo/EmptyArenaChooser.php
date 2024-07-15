@@ -1,5 +1,4 @@
 <?php
-
 declare(strict_types=1);
 
 namespace jack\sumo;
@@ -8,73 +7,56 @@ use jack\sumo\arena\Arena;
 
 /**
  * Class EmptyArenaChooser
- * @package vixikhd\onevsone
+ * @package jack\sumo
  */
 class EmptyArenaChooser {
 
-    /** @var OneVsOne $plugin */
+    /** @var Sumo $plugin */
     public $plugin;
 
     /**
-     * EmptyArenaQueue constructor.
-     * @param OneVsOne $plugin
+     * EmptyArenaChooser constructor.
+     * @param Sumo $plugin
      */
     public function __construct(Sumo $plugin) {
         $this->plugin = $plugin;
     }
 
-
-
     /**
-     * @return null|Arena
+     * @return Arena|null
      *
      * 1. Choose all arenas
      * 2. Remove in-game arenas
      * 3. Sort arenas by players
      * 4. Sort arenas by rand()
      */
-    public function getRandomArena(): ?Arena {
-        //1.
-
+    public function getRandomArena(): Arena {
+        // 1. Choose all arenas
         /** @var Arena[] $availableArenas */
-        $availableArenas = [];
-        foreach ($this->plugin->arenas as $index => $arena) {
-            $availableArenas[$index] = $arena;
-        }
+        $availableArenas = $this->plugin->arenas;
 
-        //2.
-        foreach ($availableArenas as $index => $arena) {
-            if($arena->phase !== 0 || $arena->setup) {
-                unset($availableArenas[$index]);
-            }
-        }
+        // 2. Remove in-game arenas
+        $availableArenas = array_filter($availableArenas, function($arena) {
+            return $arena->phase === 0 && !$arena->setup;
+        });
 
-        //3.
-        $arenasByPlayers = [];
-        foreach ($availableArenas as $index => $arena) {
-            $arenasByPlayers[$index] = count($arena->players);
-        }
-
-        arsort($arenasByPlayers);
-        $top = -1;
-        $availableArenas = [];
-
-        foreach ($arenasByPlayers as $index => $players) {
-            if($top == -1) {
-                $top = $players;
-                $availableArenas[] = $index;
-            }
-            else {
-                if($top == $players) {
-                    $availableArenas[] = $index;
-                }
-            }
-        }
-
-        if(empty($availableArenas)) {
+        if (empty($availableArenas)) {
             return null;
         }
 
-        return $this->plugin->arenas[$availableArenas[array_rand($availableArenas, 1)]];
+        // 3. Sort arenas by players
+        $arenasByPlayers = array_map(function($arena) {
+            return count($arena->players);
+        }, $availableArenas);
+
+        arsort($arenasByPlayers);
+
+        $maxPlayers = reset($arenasByPlayers);
+        $topArenas = array_filter($availableArenas, function($arena) use ($maxPlayers) {
+            return count($arena->players) === $maxPlayers;
+        });
+
+        // 4. Sort arenas by rand()
+        return $topArenas[array_rand($topArenas)];
     }
 }
