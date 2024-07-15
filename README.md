@@ -16,7 +16,7 @@ This plugin is not mine i just trying to finish this plugin
 Credit to owner: Altamash347
 
 # Next Version
-======[Will add]======
+=======[Will add]=======
 NPC
 Leaderboard
 Scoreboard maybe?
@@ -25,5 +25,5 @@ Commands:
 /sumo npc (Spawn a NPC)
 
 /sumo leaderboard or lb (Add a Leaderboard)
-=====[That's all]=====
+======[That's all]======
 
