@@ -15,6 +15,19 @@ This plugin is not mine i just trying to finish this plugin
 
 Credit to owner: Altamash347
 
+Plugin for:
+
+Pocketmine: Not tested
+
+ImagicalMine: Not tested
+
+Genisys: Not tested
+
+Report if you see a bugs
+or dm me in discord
+
+.exp_Lunar
+
 # Next Version
 =======[Will add]=======
 
