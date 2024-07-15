@@ -6,7 +6,7 @@ namespace jack\sumo\arena;
 
 use pocketmine\block\Block;
 use pocketmine\event\entity\EntityLevelChangeEvent;
-use pocketmine\entity\{Effect, EffectInstance};
+use pocketmine\entity\{Effect, InstantEffect};
 use pocketmine\event\Listener;
 use pocketmine\event\player\PlayerDeathEvent;
 use pocketmine\event\player\PlayerExhaustEvent;
@@ -120,7 +120,7 @@ class Arena implements Listener {
         $player->getInventory()->clearAll();
         $player->getArmorInventory()->clearAll();
         $player->getCursorInventory()->clearAll();
-        $player->addEffect(new EffectInstance(Effect::getEffect(Effect::REGENERATION), (99999999*20), (3), (false)));
+        $player->addEffect(new InstantEffect(Effect::getEffect(Effect::REGENERATION), (99999999*20), (3), (false)));
 
         $player->setGamemode($player::ADVENTURE);
         $player->setHealth(20);
