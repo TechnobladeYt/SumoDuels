@@ -10,3 +10,7 @@ A great Mini-game plugin called Sumo. Just need to push the opponent to the Void
 /sumo delete <Arena Name> (Deletes a specific arena)
   
 /sumo join                (Joins a Random Arena)  
+
+This plugin is not mine i just trying to finish this plugin
+
+Credit to owner
