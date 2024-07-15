@@ -13,4 +13,4 @@ A great Mini-game plugin called Sumo. Just need to push the opponent to the Void
 
 This plugin is not mine i just trying to finish this plugin
 
-Credit to owner
+Credit to owner: Altamash347
