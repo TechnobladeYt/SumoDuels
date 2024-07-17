@@ -28,7 +28,10 @@ or dm me in discord
 
 .exp_Lunar
 
-# Next Version
+# NOTE
+If you're in set-up mode just type the command you don't need to use (/) 
+
+# TO DO
 =======[Will add]=======
 
 NPC
